@@ -147,3 +147,58 @@ export interface EngineSnapshot {
   inputs_json: unknown           // full EngineResult inputs as JSON
   created_at: string
 }
+
+// ── Phase 2: Portfolio & Client Layer ────────────────────────────────────────
+
+/** A single fund slot in a client portfolio */
+export interface PortfolioFund {
+  code: string          // e.g. "VAS", "IVV"
+  name: string          // e.g. "Vanguard Australian Shares"
+  category: 'growth' | 'defensive'
+  currentWeight: number // % 0–100
+}
+
+/** Per-fund recommended weight derived from the engine signal */
+export interface FundAllocation extends PortfolioFund {
+  recommendedWeight: number     // scaled to match target growth/defensive split
+  delta: number                 // recommendedWeight - currentWeight
+  action: 'increase' | 'decrease' | 'hold'
+}
+
+/** Full portfolio allocation result for one client */
+export interface ClientPortfolioResult {
+  clientName: string
+  funds: FundAllocation[]
+  targetGrowth: number          // from engine allocation
+  targetDefensive: number
+  currentGrowth: number         // sum of current growth weights
+  currentDefensive: number
+  rebalanceRequired: boolean    // true if any |delta| > 2%
+}
+
+/** One tranche in a 4-tranche deployment schedule */
+export interface TrancheEntry {
+  tranche: 1 | 2 | 3 | 4
+  label: string                 // '25% now', '25% lower', etc.
+  description: string           // context for each tranche
+  condition: string             // what triggers this tranche
+  status: 'pending' | 'active' | 'complete'
+}
+
+/** Expanded tranche plan returned by buildTranchePlan() */
+export interface TranchePlan {
+  trancheActive: boolean
+  reason: string                // why tranche was triggered
+  entries: TrancheEntry[]
+}
+
+/** Rich client-facing communication output */
+export interface ClientOutput {
+  signal: DecisionSignal
+  score: number
+  headline: string              // one-line summary e.g. "Markets are cautious — defend gains"
+  body: string                  // 2–3 sentence adviser text
+  bulletPoints: string[]        // 3 key action points
+  disclaimer: string            // standard regulatory disclaimer
+  generatedAt: string           // ISO timestamp
+}
