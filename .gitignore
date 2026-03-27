@@ -43,3 +43,6 @@ bun-error.log*
 # ── TypeScript ────────────────────────────────────────────────────────────────
 *.tsbuildinfo
 nul
+
+.vercel
+AGENTS.md
