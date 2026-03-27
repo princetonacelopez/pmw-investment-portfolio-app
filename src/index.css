@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.13 0.01 285);
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.13 0.01 285);
+  --color-muted: oklch(0.96 0.01 247);
+  --color-muted-foreground: oklch(0.55 0.02 264);
+  --color-border: oklch(0.91 0.01 248);
+  --color-input: oklch(0.91 0.01 248);
+  --color-ring: oklch(0.21 0.04 265);
+  --color-primary: oklch(0.21 0.04 265);
+  --color-primary-foreground: oklch(0.98 0 0);
+  --color-secondary: oklch(0.96 0.01 247);
+  --color-secondary-foreground: oklch(0.21 0.04 265);
+  --color-destructive: oklch(0.63 0.2 25);
+  --color-destructive-foreground: oklch(0.98 0 0);
+  --radius: 0.625rem;
+
+  --font-sans: ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: oklch(0.13 0.01 285);
+    --color-foreground: oklch(0.98 0 0);
+    --color-card: oklch(0.17 0.01 285);
+    --color-card-foreground: oklch(0.98 0 0);
+    --color-muted: oklch(0.27 0.02 264);
+    --color-muted-foreground: oklch(0.71 0.02 263);
+    --color-border: oklch(0.27 0.02 264);
+    --color-input: oklch(0.27 0.02 264);
+    --color-primary: oklch(0.98 0 0);
+    --color-primary-foreground: oklch(0.21 0.04 265);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

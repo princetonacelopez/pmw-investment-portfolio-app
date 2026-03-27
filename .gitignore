@@ -1,0 +1,45 @@
+# ── Dependencies ──────────────────────────────────────────────────────────────
+/node_modules
+/.pnp
+.pnp.*
+
+# ── Build outputs ─────────────────────────────────────────────────────────────
+/build
+/dist
+
+# ── Test coverage ─────────────────────────────────────────────────────────────
+/coverage
+
+# ── Environment — NEVER commit credentials ────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# ── Bun ───────────────────────────────────────────────────────────────────────
+bun.lockb
+*.bun
+
+# ── Supabase ──────────────────────────────────────────────────────────────────
+/supabase/.temp/
+/supabase/.branches/
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+.DS_Store
+*.pem
+
+# ── Debug logs ────────────────────────────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+bun-error.log*
+
+# ── Build artifacts ───────────────────────────────────────────────────────────
+/tmp/
+
+# ── TypeScript ────────────────────────────────────────────────────────────────
+*.tsbuildinfo
+nul
